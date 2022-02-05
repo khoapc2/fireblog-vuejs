@@ -27,7 +27,6 @@
     </transition>
   </header>
 </template>
-
 <script>
 import menuIcon from "../assets/Icons/bars-regular.svg";
 export default {
@@ -88,6 +87,7 @@ header {
     .branding {
       display: flex;
       align-items: center;
+
       .header {
         font-weight: 600;
         font-size: 24px;
