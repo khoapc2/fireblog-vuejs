@@ -8,28 +8,28 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    sampleBlogCards: [
-      {
-        blogTitle: "Blog Card #1",
-        blogCoverPhoto: "stock-1",
-        blogDate: "May 1, 2021",
-      },
-      {
-        blogTitle: "Blog Card #2",
-        blogCoverPhoto: "stock-2",
-        blogDate: "May 1, 2021",
-      },
-      {
-        blogTitle: "Blog Card #3",
-        blogCoverPhoto: "stock-3",
-        blogDate: "May 1, 2021",
-      },
-      {
-        blogTitle: "Blog Card #4",
-        blogCoverPhoto: "stock-4",
-        blogbate: "May 1, 2021",
-      },
-    ],
+    // sampleBlogCards: [
+    //   {
+    //     blogTitle: "Blog Card #1",
+    //     blogCoverPhoto: "stock-1",
+    //     blogDate: "May 1, 2021",
+    //   },
+    //   {
+    //     blogTitle: "Blog Card #2",
+    //     blogCoverPhoto: "stock-2",
+    //     blogDate: "May 1, 2021",
+    //   },
+    //   {
+    //     blogTitle: "Blog Card #3",
+    //     blogCoverPhoto: "stock-3",
+    //     blogDate: "May 1, 2021",
+    //   },
+    //   {
+    //     blogTitle: "Blog Card #4",
+    //     blogCoverPhoto: "stock-4",
+    //     blogbate: "May 1, 2021",
+    //   },
+    // ],
     //Populating Application From Firebase data
     blogPosts: [],
     postLoaded: null,
@@ -141,7 +141,7 @@ export default new Vuex.Store({
       dbResults.forEach((doc) => {
         if (!state.blogPosts.some((post) => post.blogID === doc.id)) {
           const data = {
-            blogId: doc.data().blogID,
+            blogID: doc.data().blogID,
             blogHTML: doc.data().blogHTML,
             blogCoverPhoto: doc.data().blogCoverPhoto,
             blogTitle: doc.data().blogTitle,
