@@ -30,6 +30,8 @@ export default {
       }
     });
     this.checkRoute();
+    //Populating Application From Firebase Data
+    this.$store.dispatch("getPost");
   },
   mounted() {},
   methods: {

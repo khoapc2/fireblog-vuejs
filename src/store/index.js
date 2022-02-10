@@ -30,6 +30,11 @@ export default new Vuex.Store({
         blogbate: "May 1, 2021",
       },
     ],
+    //Populating Application From Firebase data
+    blogPosts: [],
+    postLoaded: null,
+
+    //
     editPost: null,
     user: null,
     profileEmail: null,
@@ -44,6 +49,16 @@ export default new Vuex.Store({
     blogPhotoName: "",
     blogPhotoFileURL: null,
     blogPhotoPreview: null,
+  },
+
+  getters: {
+    blogPostsFeed(state) {
+      return state.blogPosts.slice(0, 2);
+    },
+
+    blogPostsCards(state) {
+      return state.blogPosts.slice(2, 6);
+    },
   },
 
   mutations: {
@@ -118,6 +133,25 @@ export default new Vuex.Store({
         username: state.profileUsername,
       });
       commit("setProfileInitials");
+    },
+
+    async getPost({ state }) {
+      const dataBase = await db.collection("blogPosts").orderBy("date", "desc");
+      const dbResults = await dataBase.get();
+      dbResults.forEach((doc) => {
+        if (!state.blogPosts.some((post) => post.blogID === doc.id)) {
+          const data = {
+            blogId: doc.data().blogID,
+            blogHTML: doc.data().blogHTML,
+            blogCoverPhoto: doc.data().blogCoverPhoto,
+            blogTitle: doc.data().blogTitle,
+            blogDate: doc.data().date,
+          };
+          state.blogPosts.push(data);
+        }
+      });
+      state.postLoaded = true;
+      console.log(state.blogPosts);
     },
   },
   modules: {},
